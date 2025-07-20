@@ -1,0 +1,14 @@
+services:
+
+  jupyterlab-r-docker-stack-helm:
+    build: ./
+    image: ghcr.io/firefly2442/jupyterlab-r-docker-stack-helm:latest
+    hostname: jupyterlab-r-docker-stack-helm
+    ports:
+      - "8888:8888"
+    volumes:
+      - "jupyterlab-r-docker-stack-helm-data:/home/jovyan/:rw"
+    restart: unless-stopped
+
+volumes:
+  jupyterlab-r-docker-stack-helm-data:
