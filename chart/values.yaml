@@ -130,3 +130,12 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  # -e CHOWN_HOME=yes -e CHOWN_HOME_OPTS='-R' instructs the startup script to
+  # recursively change the ${NB_USER} home directory owner and group to the
+  # current value of ${NB_UID} and ${NB_GID}.
+  - name: CHOWN_HOME
+    value: "yes"
+  - name: CHOWN_HOME_OPTS
+    value: "-R"
