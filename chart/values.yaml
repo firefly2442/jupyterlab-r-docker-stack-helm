@@ -117,7 +117,7 @@ persistence:
   claimName: jupyterlab-r-docker-stack-helm-jovyan
 
 initContainers:
-  - name: fix-perms
+  - name: fix-permissions
     image: busybox
     command:
       - sh
