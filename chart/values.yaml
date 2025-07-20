@@ -41,7 +41,11 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  # this is needed for appropriate permissions for the "jovyan" user
+  runAsUser: 1000
+  runAsGroup: 100
+  fsGroup: 100
   # capabilities:
   #   drop:
   #   - ALL
@@ -130,12 +134,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-env:
-  # -e CHOWN_HOME=yes -e CHOWN_HOME_OPTS='-R' instructs the startup script to
-  # recursively change the ${NB_USER} home directory owner and group to the
-  # current value of ${NB_UID} and ${NB_GID}.
-  - name: CHOWN_HOME
-    value: "yes"
-  - name: CHOWN_HOME_OPTS
-    value: "-R"
