@@ -103,6 +103,15 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 25Gi
+  mountPath: /home/jovyan/
+  volumeName: jovyan
+  claimName: jupyterlab-r-docker-stack-helm-jovyan
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
