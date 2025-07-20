@@ -116,6 +116,14 @@ persistence:
   volumeName: jovyan
   claimName: jupyterlab-r-docker-stack-helm-jovyan
 
+initContainers:
+  - name: fix-perms
+    image: busybox
+    command: ["sh", "-c", "chown -R 1000:100 /home/jovyan"]
+    volumeMounts:
+      - name: jupyterlab-r-docker-stack-helm-jovyan
+        mountPath: /home/jovyan
+
 # Additional volumes on the output Deployment definition.
 volumes: []
 # - name: foo
