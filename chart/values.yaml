@@ -144,3 +144,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# environment variables
+env: []
+# add your own here as needed, e.g.
+# env:
+# - name: TZ
+#   value: America/Chicago
