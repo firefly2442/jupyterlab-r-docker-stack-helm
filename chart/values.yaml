@@ -119,7 +119,15 @@ persistence:
 initContainers:
   - name: fix-perms
     image: busybox
-    command: ["sh", "-c", "chown -R 1000:100 /home/jovyan"]
+    command:
+      - sh
+      - -c
+      - |
+        echo "Disabling Jupyterlab authentication..."
+        mkdir -p /home/jovyan/.jupyter/ && printf "c.NotebookApp.token = ''\nc.NotebookApp.password = ''\n" > /home/jovyan/.jupyter/jupyter_notebook_config.py
+        echo "Fixing permissions..."
+        chown -R 1000:100 /home/jovyan
+        echo "Done!"
     securityContext:
       runAsUser: 0  # run as root
     volumeMounts:
