@@ -27,6 +27,8 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        {{- toYaml .Values.initContainers | nindent 8 }}
       serviceAccountName: {{ include "jupyterlab-r-docker-stack-helm.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
