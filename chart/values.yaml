@@ -120,8 +120,10 @@ initContainers:
   - name: fix-perms
     image: busybox
     command: ["sh", "-c", "chown -R 1000:100 /home/jovyan"]
+    securityContext:
+      runAsUser: 0  # run as root
     volumeMounts:
-      - name: jupyterlab-r-docker-stack-helm-jovyan
+      - name: jovyan
         mountPath: /home/jovyan
 
 # Additional volumes on the output Deployment definition.
