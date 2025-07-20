@@ -56,8 +56,7 @@ spec:
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
+volumeMounts:
             {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
@@ -65,7 +64,6 @@ spec:
             - name: {{ .Values.persistence.volumeName }}
               mountPath: {{ .Values.persistence.mountPath }}
             {{- end }}
-      {{- with .Values.volumes }}
       volumes:
         {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
